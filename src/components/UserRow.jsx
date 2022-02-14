@@ -25,61 +25,65 @@ const UserRow = ({ usuario, handleRemove }) => {
 
   return user ? (
     <>
-      {!edit ? (
-        <tr className="text-center">
-          <th scope="row">{user.id}</th>
-          <td>{user.username}</td>
-          <td>{user.rol.toUpperCase()}</td>
-          <td>{user.email}</td>
-          <td>{user.password}</td>
-          <td>
-            <div className="btn mx-2" onClick={() => setEdit(!edit)}>
-              ✏️
-            </div>
-            <div className="btn " onClick={() => handleRemove(user.id)}>
-              ❌
-            </div>
-          </td>
-        </tr>
-      ) : (
-        <tr className="text-center">
-          <th scope="row">{user.id}</th>
-          <td>
-            <input
-              type="text"
-              value={user.username}
-              name="username"
-              onChange={handleChange}
-            />
-          </td>
-          <td>{user.rol.toUpperCase()}</td>
-          <td>
-            <input value={user.email} name="email" onChange={handleChange} />
-          </td>
-          <td>
-            <input
-              type="text"
-              name="password"
-              value={user.password}
-              onChange={handleChange}
-            />
-          </td>
-          <td>
-            <div className="btn mx-2" onClick={handleUpdate}>
-              ✅
-            </div>
-            <div
-              className="btn"
-              onClick={() => {
-                setEdit(!edit);
-                setUser(usuario);
-              }}
-            >
-              ❌
-            </div>
-          </td>
-        </tr>
-      )}
+      <tr className="text-center">
+        <th scope="row">{user.id}</th>
+        {!edit ? (
+          <>
+            <td>{user.username}</td>
+            <td>{user.rol.toUpperCase()}</td>
+            <td>{user.email}</td>
+            <td>{user.password}</td>
+            <td>
+              {/* <div className="btn " onClick={() => {}}>
+              ✉
+            </div> */}
+              <div className="btn mx-2" onClick={() => setEdit(!edit)}>
+                ✏️
+              </div>
+              <div className="btn " onClick={() => handleRemove(user.id)}>
+                ❌
+              </div>
+            </td>
+          </>
+        ) : (
+          <>
+            <td>
+              <input
+                type="text"
+                value={user.username}
+                name="username"
+                onChange={handleChange}
+              />
+            </td>
+            <td>{user.rol.toUpperCase()}</td>
+            <td>
+              <input value={user.email} name="email" onChange={handleChange} />
+            </td>
+            <td>
+              <input
+                type="text"
+                name="password"
+                value={user.password}
+                onChange={handleChange}
+              />
+            </td>
+            <td>
+              <div className="btn mx-2" onClick={handleUpdate}>
+                ✅
+              </div>
+              <div
+                className="btn"
+                onClick={() => {
+                  setEdit(!edit);
+                  setUser(usuario);
+                }}
+              >
+                ❌
+              </div>
+            </td>
+          </>
+        )}
+      </tr>
     </>
   ) : (
     <></>
