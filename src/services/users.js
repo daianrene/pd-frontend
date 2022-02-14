@@ -1,22 +1,27 @@
 import axios from "axios";
+import authHeader from "./auth-header";
 const API_URL = "http://localhost:8080/api/";
 
 const getUsers = (user) => {
-  return axios.get(API_URL + "admin/usuarios", {
-    user,
-  });
+  return axios.get(API_URL + "admin/usuarios", { headers: authHeader() });
 };
 
 const deleteUser = (idUser) => {
   return axios.delete(API_URL + "admin/usuarios/delete/", {
+    headers: authHeader(),
     params: { id: idUser },
   });
 };
 
 const updateUser = (data) => {
-  return axios.put(API_URL + "admin/usuarios/update/", {
-    ...data,
-  });
+  return axios.put(
+    API_URL + "admin/usuarios/update/",
+    {
+      ...data,
+    },
+
+    { headers: authHeader() }
+  );
 };
 
 const Users = {

@@ -5,7 +5,14 @@ import AuthService from "../services/auth";
 
 const Navbar = ({ currentUser }) => {
   const getNav = () => {
-    if (!currentUser) return <></>;
+    if (!currentUser)
+      return (
+        <li className="nav-item">
+          <Link to={"/login"} className="nav-link">
+            Ingresar
+          </Link>
+        </li>
+      );
     return (
       <>
         {currentUser.rol === "admin" ? (
@@ -31,6 +38,7 @@ const Navbar = ({ currentUser }) => {
       </>
     );
   };
+
   return (
     <nav className="navbar navbar-expand navbar-dark bg-dark mb-3">
       <Link to={"/"} className="navbar-brand">
@@ -41,4 +49,5 @@ const Navbar = ({ currentUser }) => {
     </nav>
   );
 };
+
 export default Navbar;
