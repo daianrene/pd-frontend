@@ -23,7 +23,6 @@ const Profile = () => {
       let newUsers = usuarios.filter((user) => userUpdate.id !== user.id);
       newUsers.push(userUpdate);
       newUsers = newUsers.sort((u1, u2) => u1.id - u2.id);
-
       setUsuarios(newUsers);
     } catch (err) {
       console.log(err);
