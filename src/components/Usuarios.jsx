@@ -16,13 +16,31 @@ const Profile = () => {
     initial();
   }, []);
 
-  const removeUser = (idRemove) => {
-    Users.deleteUser(idRemove)
-      .then(() => {
-        const newList = usuarios.filter((user) => user.id !== idRemove);
-        setUsuarios(newList);
-      })
-      .catch((err) => console.log(err.response.data));
+  const handleUpdate = async (userUpdate) => {
+    try {
+      const prom = await Users.updateUser(userUpdate);
+
+      let newUsers = usuarios.filter((user) => userUpdate.id !== user.id);
+      newUsers.push(userUpdate);
+      newUsers = newUsers.sort((u1, u2) => u1.id - u2.id);
+
+      setUsuarios(newUsers);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const removeUser = async (idRemove) => {
+    try {
+      const prom = await Users.deleteUser(idRemove);
+
+      const newUsers = usuarios
+        .filter((user) => user.id !== idRemove)
+        .sort((u1, u2) => u1.id < u2.id);
+      setUsuarios(newUsers);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (
@@ -42,7 +60,7 @@ const Profile = () => {
                   <th scope="col text-center">Rol</th>
                   <th scope="col text-center">Email</th>
                   <th scope="col text-center">Contraseña</th>
-                  <th scope="col">Editar</th>
+                  <th scope="col">Acciones</th>
                 </tr>
               </thead>
               <tbody>
@@ -50,6 +68,7 @@ const Profile = () => {
                   <UserRow
                     key={user.id}
                     usuario={user}
+                    handleUpdate={handleUpdate}
                     handleRemove={removeUser}
                   />
                 ))}

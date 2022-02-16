@@ -6,7 +6,7 @@ const Reportes = () => {
       <div className="container ">
         <Link to={"/reportes/nuevo"}>
           <button className="btn btn-success my-2">Nuevo reporte</button>
-        </Link>{" "}
+        </Link>
         <div className="jumbotron">
           <h1>Mis reportes</h1>
         </div>

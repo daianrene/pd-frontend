@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthService from "../services/auth";
+import getTurno from "../services/get-turno";
 
 const required = (value) => {
   if (!value) {
@@ -23,6 +24,7 @@ const NewReporte = () => {
     let fecha = new Date().toISOString().split("T")[0];
     setFecha(fecha);
     setDescripcion("Sin novedades");
+    setTurno(getTurno());
   }, []);
 
   const onChangeUser = (e) => {
@@ -53,14 +55,16 @@ const NewReporte = () => {
           <form onSubmit={handleSubmit}>
             <div className="form-group">
               <label htmlFor="turno">Turno</label>
-              <input
-                type="text"
-                className="form-control"
-                name="turno"
+              <select
+                className="custom-select"
                 value={turno}
                 onChange={onChangeTurno}
-                validations={[required]}
-              />
+              >
+                <option value="T1">T1</option>
+                <option value="T2">T2</option>
+                <option value="T3">T3</option>
+                <option value="T4">T4</option>
+              </select>
             </div>
             <div className="form-group">
               <label htmlFor="fecha">Fecha</label>
