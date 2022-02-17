@@ -3,9 +3,9 @@ import AuthService from "./services/auth";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
 import Home from "./components/Home";
-import Register from "./components/Register";
+import NewUser from "./components/UsuariosPage/NewUser";
 import Login from "./components/Login";
-import Usuarios from "./components/Usuarios";
+import Usuarios from "./components/UsuariosPage/Usuarios";
 import Reportes from "./components/Reportes";
 import { useNavigate } from "react-router-dom";
 import NewReporte from "./components/NewReporte";
@@ -32,11 +32,10 @@ const App = () => {
       <Routes>
         <Route exact path="/" element={<Home />} />
         <Route exact path="/login" element={<Login />} />
-        <Route exact path="/register" element={<Register />} />
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/reportes" element={<Reportes />} />
         <Route exact path="/reportes/nuevo" element={<NewReporte />} />
-        <Route exact path="/user/nuevo" element={<Register />} />
+        <Route exact path="/user/nuevo" element={<NewUser />} />
       </Routes>
     </>
   );

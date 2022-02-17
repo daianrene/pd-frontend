@@ -40,7 +40,7 @@ const Navbar = ({ currentUser }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark mb-3">
+    <nav className="navbar navbar-expand navbar-dark bg-dark py-3 mb-3">
       <Link to={"/"} className="navbar-brand">
         <div className="h2">Sistema Parte Diario</div>
       </Link>

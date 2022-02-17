@@ -64,14 +64,13 @@ const UserRow = ({ usuario, handleRemove, handleUpdate }) => {
         </td>
       </tr>
 
-      <Modal show={showMsg} onHide={toggleShowMsg}>
+      <Modal show={showMsg} onHide={toggleShowMsg} centered>
         <Modal.Header>
-          <Modal.Title>
-            Ingrese el mensaje para el usuario {user.username}
-          </Modal.Title>
+          <Modal.Title>Nuevo mensaje para {user.username}</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <textarea
+            placeholder="Nuevo Mensaje..."
             rows={7}
             type="textarea"
             className="form-control"
@@ -94,9 +93,10 @@ const UserRow = ({ usuario, handleRemove, handleUpdate }) => {
           toggleShowUpdt();
           setUserUpdate(user);
         }}
+        centered
       >
         <Modal.Header>
-          <Modal.Title>Ingrese los nuevos datos</Modal.Title>
+          <Modal.Title>Editar datos</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <>
