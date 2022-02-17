@@ -55,7 +55,7 @@ const NewUser = ({ handleNew }) => {
       </button>
 
       <Modal show={showModal} onHide={toggleShowModal} centered>
-        <Modal.Header>
+        <Modal.Header className="justify-content-center">
           <Modal.Title>Registrar nuevo usuario</Modal.Title>
         </Modal.Header>
         <Modal.Body>
