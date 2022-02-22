@@ -50,8 +50,8 @@ const NewUser = ({ handleNew }) => {
 
   return (
     <>
-      <button onClick={toggleShowModal} className="btn btn-success my-4">
-        Nuevo Usuario
+      <button onClick={toggleShowModal} className="btn btn-success my-4 ">
+        <i className="material-icons-outlined">person_add</i>
       </button>
 
       <Modal show={showModal} onHide={toggleShowModal} centered>

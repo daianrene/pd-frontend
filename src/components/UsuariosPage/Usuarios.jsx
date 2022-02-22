@@ -51,6 +51,14 @@ const Profile = () => {
     }
   };
 
+  const handleMessage = async (message, id) => {
+    try {
+      await Users.sendMessage(message, id);
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <div className="container ">
       <div className="jumbotron">
@@ -78,6 +86,7 @@ const Profile = () => {
                     usuario={user}
                     handleUpdate={handleUpdate}
                     handleRemove={removeUser}
+                    handleMessage={handleMessage}
                   />
                 ))}
               </tbody>

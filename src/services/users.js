@@ -24,10 +24,27 @@ const updateUser = (data) => {
   );
 };
 
+const sendMessage = (message, toUserId) => {
+  return axios.post(
+    API_URL + "admin/usuarios/message",
+    {
+      message,
+      toUserId,
+    },
+    { headers: authHeader() }
+  );
+};
+
+const getMessages = (userId) => {
+  return axios.get(API_URL + `usuarios/messages?userId=${userId}`);
+};
+
 const Users = {
   getUsers,
   deleteUser,
   updateUser,
+  sendMessage,
+  getMessages,
 };
 
 export default Users;

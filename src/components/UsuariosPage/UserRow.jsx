@@ -3,7 +3,7 @@ import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 import MsgUser from "./MsgUser";
 import EditUser from "./EditUser";
 
-const UserRow = ({ usuario, handleRemove, handleUpdate }) => {
+const UserRow = ({ usuario, handleRemove, handleUpdate, handleMessage }) => {
   const [user, setUser] = useState({});
 
   const [show, setShow] = useState(false);
@@ -21,12 +21,12 @@ const UserRow = ({ usuario, handleRemove, handleUpdate }) => {
       <td>{user.username}</td>
       <td>{user.rol}</td>
       <td>{user.email}</td>
-      <td>*********</td>
+      <td>**********</td>
       <td>
         <EditUser user={user} handleUpdate={handleUpdate} />
         {user.rol !== "admin" ? (
           <>
-            <MsgUser user={user.username} />
+            <MsgUser user={user} handleMessage={handleMessage} />
 
             <OverlayTrigger
               placement="bottom"

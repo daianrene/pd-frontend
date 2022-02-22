@@ -1,15 +1,24 @@
 import { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 
-const MsgUser = ({ user }) => {
+const MsgUser = ({ user, handleMessage }) => {
   const [username, setUsername] = useState("");
+  const [message, setMessage] = useState("");
   const [showMsg, setShowMsg] = useState(false);
 
-  const toggleShowMsg = () => setShowMsg(!showMsg);
+  const toggleShowMsg = () => {
+    setShowMsg(!showMsg);
+    setMessage("");
+  };
 
   useEffect(() => {
-    setUsername(user);
+    setUsername(user.username);
   }, [user]);
+
+  const sendMessage = () => {
+    handleMessage(message, user.id);
+    toggleShowMsg();
+  };
 
   return (
     <>
@@ -32,10 +41,12 @@ const MsgUser = ({ user }) => {
             type="textarea"
             className="form-control"
             name="descripcion"
+            value={message}
+            onChange={(e) => setMessage(e.target.value)}
           />
         </Modal.Body>
         <Modal.Footer>
-          <button className="btn btn-success" onClick={toggleShowMsg}>
+          <button className="btn btn-success" onClick={sendMessage}>
             Enviar Mensaje
           </button>
           <button className="btn btn-danger" onClick={toggleShowMsg}>

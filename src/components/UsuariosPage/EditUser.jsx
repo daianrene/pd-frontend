@@ -29,6 +29,7 @@ const EditUser = ({ user, handleUpdate }) => {
         show={showUpdt}
         onHide={() => {
           toggleShowUpdt();
+          setShowPass(false);
           setUserUpdate(user);
         }}
         centered
@@ -86,6 +87,7 @@ const EditUser = ({ user, handleUpdate }) => {
             className="btn btn-success"
             onClick={() => {
               toggleShowUpdt();
+              setShowPass(false);
               handleUpdate(userUpdate);
             }}
           >
@@ -97,6 +99,7 @@ const EditUser = ({ user, handleUpdate }) => {
             onClick={() => {
               toggleShowUpdt();
               setUserUpdate(user);
+              setShowPass(false);
             }}
           >
             Cancelar

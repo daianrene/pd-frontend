@@ -2,8 +2,7 @@ import { useState, useEffect } from "react";
 import AuthService from "./services/auth";
 import Navbar from "./components/Navbar";
 import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home";
-import NewUser from "./components/UsuariosPage/NewUser";
+import Home from "./components/Home/Home";
 import Login from "./components/Login";
 import Usuarios from "./components/UsuariosPage/Usuarios";
 import Reportes from "./components/Reportes";
@@ -35,7 +34,6 @@ const App = () => {
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/reportes" element={<Reportes />} />
         <Route exact path="/reportes/nuevo" element={<NewReporte />} />
-        <Route exact path="/user/nuevo" element={<NewUser />} />
       </Routes>
     </>
   );

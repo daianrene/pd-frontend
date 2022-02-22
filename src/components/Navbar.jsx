@@ -9,7 +9,7 @@ const Navbar = ({ currentUser }) => {
       return (
         <li className="nav-item">
           <Link to={"/login"} className="nav-link">
-            Ingresar
+            Ingresar <i className="material-icons">login</i>
           </Link>
         </li>
       );
@@ -19,20 +19,22 @@ const Navbar = ({ currentUser }) => {
           <>
             <li className="nav-item">
               <Link to={"/usuarios"} className="nav-link">
-                Usuarios
+                Usuarios <i className="material-icons ">people</i>
               </Link>
             </li>
           </>
         ) : (
           <>
-            <Link to={"/reportes"} className="nav-link">
-              Reportes
-            </Link>
+            <li className="nav-item">
+              <Link to={"/reportes"} className="nav-link">
+                Reportes <i className="material-icons-outlined">description</i>
+              </Link>
+            </li>
           </>
         )}
         <li className="nav-item">
           <a href="/login" className="nav-link" onClick={AuthService.logout}>
-            Cerrar sesion
+            Cerrar sesion <i className="material-icons ">logout</i>
           </a>
         </li>
       </>
