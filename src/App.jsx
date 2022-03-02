@@ -10,17 +10,22 @@ import { useNavigate } from "react-router-dom";
 import NewReporte from "./components/NewReporte";
 
 const App = () => {
-  const [currentUser, setCurrentUser] = useState(undefined);
+  const [currentUser, setCurrentUser] = useState(null);
   let navigate = useNavigate();
 
   useEffect(() => {
-    const user = AuthService.getCurrentUser();
-    if (user) {
-      setCurrentUser(user);
-      return navigate("/");
-    } else {
-      return navigate("/login");
-    }
+    const initial = async () => {
+      await AuthService.validateToken();
+      const user = AuthService.getCurrentUser();
+      if (user) {
+        setCurrentUser(user);
+        return navigate("/");
+      } else {
+        return navigate("/login");
+      }
+    };
+
+    initial();
 
     // eslint-disable-next-line
   }, []);
@@ -29,7 +34,7 @@ const App = () => {
     <>
       <Navbar currentUser={currentUser} />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route exact path="/" element={<Home currentUser={currentUser} />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/usuarios" element={<Usuarios />} />
         <Route exact path="/reportes" element={<Reportes />} />

@@ -1,4 +1,3 @@
-import React from "react";
 import { Link } from "react-router-dom";
 
 import AuthService from "../services/auth";
@@ -42,7 +41,7 @@ const Navbar = ({ currentUser }) => {
   };
 
   return (
-    <nav className="navbar navbar-expand navbar-dark bg-dark py-3 mb-3">
+    <nav className="navbar  navbar-expand  navbar-dark bg-dark py-3 mb-3">
       <Link to={"/"} className="navbar-brand">
         <div className="h2">Sistema Parte Diario</div>
       </Link>

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
+import Users from "../../services/users";
 
 const MsgUser = ({ user, handleMessage }) => {
   const [username, setUsername] = useState("");
@@ -15,9 +16,13 @@ const MsgUser = ({ user, handleMessage }) => {
     setUsername(user.username);
   }, [user]);
 
-  const sendMessage = () => {
-    handleMessage(message, user.id);
+  const sendMessage = async () => {
     toggleShowMsg();
+    try {
+      await Users.sendMessage(message, user.id);
+    } catch (err) {
+      console.log(err);
+    }
   };
 
   return (

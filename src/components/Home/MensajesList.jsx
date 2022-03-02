@@ -16,7 +16,7 @@ const MensajesList = ({ userId }) => {
   return (
     <>
       <div className="h1 mb-5">Nuevos mensajes</div>
-      <ul className="list-group border">
+      <ul className="list-group">
         {mensajes.map((mensaje, index) => (
           <Mensaje key={index} data={mensaje} />
         ))}

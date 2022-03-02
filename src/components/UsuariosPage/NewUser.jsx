@@ -10,6 +10,7 @@ const initialUser = {
 
 const NewUser = ({ handleNew }) => {
   const [user, setUser] = useState(initialUser);
+  const [showPass, setShowPass] = useState(false);
 
   const [loading, setLoading] = useState(false);
   const [message, setMessage] = useState("");
@@ -46,6 +47,7 @@ const NewUser = ({ handleNew }) => {
     setShowModal(!showModal);
     setUser(initialUser);
     setMessage("");
+    setShowPass(false);
   };
 
   return (
@@ -83,8 +85,14 @@ const NewUser = ({ handleNew }) => {
 
           <div className="form-group">
             <label htmlFor="password">Contraseña</label>
+            <div
+              className="btn material-icons-outlined"
+              onClick={() => setShowPass(!showPass)}
+            >
+              {showPass ? "visibility" : "visibility_off"}
+            </div>
             <input
-              type="text"
+              type={showPass ? "text" : "password"}
               className="form-control"
               name="password"
               value={user.password}

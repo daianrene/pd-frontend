@@ -20,20 +20,19 @@ const EditUser = ({ user, handleUpdate }) => {
   return (
     <>
       <OverlayTrigger placement="bottom" overlay={<Tooltip>Editar</Tooltip>}>
-        <div className="material-icons-outlined btn" onClick={toggleShowUpdt}>
+        <div
+          className="material-icons-outlined btn"
+          onClick={() => {
+            toggleShowUpdt();
+            setShowPass(false);
+            setUserUpdate(user);
+          }}
+        >
           edit
         </div>
       </OverlayTrigger>
 
-      <Modal
-        show={showUpdt}
-        onHide={() => {
-          toggleShowUpdt();
-          setShowPass(false);
-          setUserUpdate(user);
-        }}
-        centered
-      >
+      <Modal show={showUpdt} onHide={toggleShowUpdt} centered>
         <Modal.Header className="justify-content-center">
           <Modal.Title>Editar datos</Modal.Title>
         </Modal.Header>
@@ -41,14 +40,17 @@ const EditUser = ({ user, handleUpdate }) => {
           <>
             <div className="form-group">
               <label htmlFor="username">Nombre de usuario</label>
-              <input
+              {/* <input
                 type="text"
                 className="form-control"
                 name="username"
                 value={userUpdate.username}
                 disabled
                 onChange={handleChange}
-              />
+              /> */}
+              <div className="form-control" style={{ background: "#e9ecef" }}>
+                {userUpdate.username}
+              </div>
             </div>
 
             <div className="form-group">
@@ -87,21 +89,13 @@ const EditUser = ({ user, handleUpdate }) => {
             className="btn btn-success"
             onClick={() => {
               toggleShowUpdt();
-              setShowPass(false);
               handleUpdate(userUpdate);
             }}
           >
             Actualizar
           </button>
 
-          <button
-            className="btn btn-danger"
-            onClick={() => {
-              toggleShowUpdt();
-              setUserUpdate(user);
-              setShowPass(false);
-            }}
-          >
+          <button className="btn btn-danger" onClick={toggleShowUpdt}>
             Cancelar
           </button>
         </Modal.Footer>

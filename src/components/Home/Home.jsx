@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
-import AuthService from "../../services/auth";
 import MensajesList from "./MensajesList";
 
-const Home = () => {
+const Home = ({ currentUser }) => {
   const [user, setUser] = useState({});
 
   useEffect(() => {
-    setUser(AuthService.getCurrentUser);
-  }, []);
+    setUser(currentUser);
+  }, [currentUser]);
 
   return (
     <div className="container">

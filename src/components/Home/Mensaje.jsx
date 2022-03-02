@@ -1,7 +1,8 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+
 const Mensaje = ({ index, data }) => {
   return (
-    <li key={index} className="list-group-item ">
+    <li key={index} className="list-group-item my-3">
       <div className="d-flex justify-content-between align-items-center">
         <p className="text-break text-justify mr-5 text-uppercase">
           {data.message}

@@ -1,2 +1,0 @@
-# Parte Diario Frontend
-

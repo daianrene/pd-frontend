@@ -36,7 +36,9 @@ const sendMessage = (message, toUserId) => {
 };
 
 const getMessages = (userId) => {
-  return axios.get(API_URL + `usuarios/messages?userId=${userId}`);
+  return axios.get(API_URL + `usuarios/messages?userId=${userId}`, {
+    headers: authHeader(),
+  });
 };
 
 const Users = {
