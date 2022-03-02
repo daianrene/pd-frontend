@@ -3,11 +3,14 @@ import { Modal, OverlayTrigger, Tooltip } from "react-bootstrap";
 
 const EditUser = ({ user, handleUpdate }) => {
   const [userUpdate, setUserUpdate] = useState({});
-
+  const [message, setMessage] = useState("");
   const [showPass, setShowPass] = useState(false);
-
   const [showUpdt, setShowUpdt] = useState(false);
-  const toggleShowUpdt = () => setShowUpdt(!showUpdt);
+
+  const toggleShowUpdt = () => {
+    setMessage("");
+    setShowUpdt(!showUpdt);
+  };
 
   useEffect(() => {
     setUserUpdate(user);
@@ -15,6 +18,12 @@ const EditUser = ({ user, handleUpdate }) => {
 
   const handleChange = (e) => {
     setUserUpdate({ ...userUpdate, [e.target.name]: e.target.value });
+  };
+
+  const handleSubmit = async () => {
+    const res = await handleUpdate(userUpdate);
+    if (!res) toggleShowUpdt();
+    else setMessage(res);
   };
 
   return (
@@ -81,17 +90,19 @@ const EditUser = ({ user, handleUpdate }) => {
                 onChange={handleChange}
               />
             </div>
+
+            {message && (
+              <div className="form-group">
+                <div className="alert alert-danger" role="alert">
+                  {message}
+                </div>
+              </div>
+            )}
           </>
         </Modal.Body>
 
         <Modal.Footer>
-          <button
-            className="btn btn-success"
-            onClick={() => {
-              toggleShowUpdt();
-              handleUpdate(userUpdate);
-            }}
-          >
+          <button className="btn btn-success" onClick={handleSubmit}>
             Actualizar
           </button>
 

@@ -6,10 +6,12 @@ const MsgUser = ({ user, handleMessage }) => {
   const [username, setUsername] = useState("");
   const [message, setMessage] = useState("");
   const [showMsg, setShowMsg] = useState(false);
+  const [messageError, setMessageError] = useState("");
 
   const toggleShowMsg = () => {
     setShowMsg(!showMsg);
     setMessage("");
+    setMessageError("");
   };
 
   useEffect(() => {
@@ -17,7 +19,14 @@ const MsgUser = ({ user, handleMessage }) => {
   }, [user]);
 
   const sendMessage = async () => {
+    if (!message.trim()) {
+      setMessage("");
+      setMessageError("El mensaje no puede estar vacio");
+      return;
+    }
+
     toggleShowMsg();
+
     try {
       await Users.sendMessage(message, user.id);
     } catch (err) {
@@ -49,6 +58,14 @@ const MsgUser = ({ user, handleMessage }) => {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
           />
+
+          {messageError && (
+            <div className="form-group mt-3">
+              <div className="alert alert-danger" role="alert">
+                {messageError}
+              </div>
+            </div>
+          )}
         </Modal.Body>
         <Modal.Footer>
           <button className="btn btn-success" onClick={sendMessage}>

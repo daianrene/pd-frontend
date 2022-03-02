@@ -34,8 +34,14 @@ const Profile = () => {
         user.id === userUpdate.id ? userUpdate : user
       );
       setUsuarios(newUsers);
+      return "";
     } catch (err) {
       console.log(err);
+      const resMessage =
+        (err.response && err.response.data && err.response.data.message) ||
+        err.message ||
+        err.toString();
+      return resMessage;
     }
   };
 

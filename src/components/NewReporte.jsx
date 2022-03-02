@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import AuthService from "../services/auth";
-import getTurno from "../services/get-turno";
+import getTurno from "../services/getTurno";
 
 const required = (value) => {
   if (!value) {
