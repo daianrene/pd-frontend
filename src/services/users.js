@@ -2,7 +2,7 @@ import axios from "axios";
 import authHeader from "./authHeader";
 const API_URL = "http://localhost:8080/api/";
 
-const getUsers = (user) => {
+const getUsers = () => {
   return axios.get(API_URL + "admin/usuarios", { headers: authHeader() });
 };
 
@@ -41,12 +41,39 @@ const getMessages = (userId) => {
   });
 };
 
+const addReporte = (reporte) => {
+  return axios.put(
+    API_URL + "usuarios/addreporte",
+    {
+      ...reporte,
+    },
+    {
+      headers: authHeader(),
+    }
+  );
+};
+
+const getReportes = (userId) => {
+  return axios.get(API_URL + `usuarios/reportes?userId=${userId}`, {
+    headers: authHeader(),
+  });
+};
+
+const getAllReportes = () => {
+  return axios.get(API_URL + `usuarios/allreportes`, {
+    headers: authHeader(),
+  });
+};
+
 const Users = {
   getUsers,
   deleteUser,
   updateUser,
   sendMessage,
   getMessages,
+  addReporte,
+  getReportes,
+  getAllReportes,
 };
 
 export default Users;

@@ -14,7 +14,7 @@ const Navbar = ({ currentUser }) => {
       );
     return (
       <>
-        {currentUser.rol === "admin" ? (
+        {currentUser.rol === "admin" && (
           <>
             <li className="nav-item">
               <Link to={"/usuarios"} className="nav-link">
@@ -22,15 +22,14 @@ const Navbar = ({ currentUser }) => {
               </Link>
             </li>
           </>
-        ) : (
-          <>
-            <li className="nav-item">
-              <Link to={"/reportes"} className="nav-link">
-                Reportes <i className="material-icons-outlined">description</i>
-              </Link>
-            </li>
-          </>
         )}
+
+        <li className="nav-item">
+          <Link to={"/reportes"} className="nav-link">
+            Reportes <i className="material-icons-outlined">description</i>
+          </Link>
+        </li>
+
         <li className="nav-item">
           <a href="/login" className="nav-link" onClick={AuthService.logout}>
             Cerrar sesion <i className="material-icons ">logout</i>

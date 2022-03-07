@@ -60,7 +60,7 @@ const Profile = () => {
       <div className="jumbotron pt-3">
         <div className="d-flex  justify-content-between  align-items-center">
           <h1>Usuarios</h1>
-          <NewUser handleNew={handleNew}></NewUser>
+          <NewUser handleNew={handleNew} />
         </div>
         <>
           <table className="table table-striped">

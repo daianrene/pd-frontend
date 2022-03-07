@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import AuthService from "./services/auth";
 import Navbar from "./components/Navbar";
-import { Routes, Route } from "react-router-dom";
-import Home from "./components/Home/Home";
-import Login from "./components/Login";
+import Home from "./components/HomePage/Home";
+import Login from "./components/LoginPage/Login";
 import Usuarios from "./components/UsuariosPage/Usuarios";
-import Reportes from "./components/Reportes";
-import { useNavigate } from "react-router-dom";
-import NewReporte from "./components/NewReporte";
+import Reportes from "./components/ReportesPage/Reportes";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -17,6 +16,7 @@ const App = () => {
     const initial = async () => {
       await AuthService.validateToken();
       const user = AuthService.getCurrentUser();
+
       if (user) {
         setCurrentUser(user);
         return navigate("/");
@@ -26,8 +26,6 @@ const App = () => {
     };
 
     initial();
-
-    // eslint-disable-next-line
   }, []);
 
   return (
@@ -37,8 +35,11 @@ const App = () => {
         <Route exact path="/" element={<Home currentUser={currentUser} />} />
         <Route exact path="/login" element={<Login />} />
         <Route exact path="/usuarios" element={<Usuarios />} />
-        <Route exact path="/reportes" element={<Reportes />} />
-        <Route exact path="/reportes/nuevo" element={<NewReporte />} />
+        <Route
+          exact
+          path="/reportes"
+          element={<Reportes currentUser={currentUser} />}
+        />
       </Routes>
     </>
   );

@@ -51,8 +51,6 @@ const validateToken = async () => {
       console.log(err.message);
       localStorage.removeItem("user");
     }
-  } else {
-    return null;
   }
 };
 
