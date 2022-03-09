@@ -53,7 +53,12 @@ const Reportes = ({ currentUser }) => {
         </div>
         <ul className="list-group">
           {reportes.map((reporte, index) => (
-            <Reporte key={index} data={reporte} />
+            <Reporte
+              key={index}
+              data={reporte}
+              user={currentUser}
+              handleUpdt={handleAddReporte}
+            />
           ))}
         </ul>
       </div>
