@@ -6,6 +6,10 @@ const getUsers = () => {
   return axios.get(API_URL + "admin/usuarios", { headers: authHeader() });
 };
 
+const getConserjes = () => {
+  return axios.get(API_URL + "admin/conserjes", { headers: authHeader() });
+};
+
 const deleteUser = (idUser) => {
   return axios.delete(API_URL + "admin/usuarios/delete/", {
     headers: authHeader(),
@@ -36,7 +40,13 @@ const sendMessage = (message, toUserId) => {
 };
 
 const getMessages = (userId) => {
-  return axios.get(API_URL + `usuarios/messages?userId=${userId}`, {
+  return axios.get(API_URL + `usuarios/messages`, {
+    headers: authHeader(),
+  });
+};
+
+const getAllMessages = () => {
+  return axios.get(API_URL + `admin/allmessages`, {
     headers: authHeader(),
   });
 };
@@ -54,26 +64,39 @@ const addReporte = (reporte) => {
 };
 
 const getReportes = (userId) => {
-  return axios.get(API_URL + `usuarios/reportes?userId=${userId}`, {
+  return axios.get(API_URL + `usuarios/reportes`, {
     headers: authHeader(),
   });
 };
 
 const getAllReportes = () => {
-  return axios.get(API_URL + `usuarios/allreportes`, {
+  return axios.get(API_URL + `admin/allreportes`, {
     headers: authHeader(),
   });
 };
 
+const readMessage = (idMessage) => {
+  return axios.put(
+    API_URL + `usuarios/readmessage`,
+    { idMessage },
+    {
+      headers: authHeader(),
+    }
+  );
+};
+
 const Users = {
   getUsers,
+  getConserjes,
   deleteUser,
   updateUser,
   sendMessage,
   getMessages,
+  getAllMessages,
   addReporte,
   getReportes,
   getAllReportes,
+  readMessage,
 };
 
 export default Users;

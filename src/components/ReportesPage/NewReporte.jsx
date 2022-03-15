@@ -1,7 +1,7 @@
 import { Modal } from "react-bootstrap";
 import { useEffect, useState } from "react";
 import AuthService from "../../services/auth";
-import getTurno from "../../services/getTurno";
+import getTurno from "../../Utils/getTurno";
 
 const reporteDefault = {
   turno: getTurno(),

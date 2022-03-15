@@ -1,26 +1,42 @@
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
+import reformatDate from "../../Utils/reformatDate";
 
-const Mensaje = ({ index, data }) => {
+const Mensaje = ({ data, handleRead, rol }) => {
+  const readMessage = () => {
+    handleRead(data.id);
+  };
+
   return (
-    <li key={index} className="list-group-item my-3">
+    <li key={data.id} className="list-group-item my-3">
       <div className="d-flex justify-content-between align-items-center">
-        <p className="text-break text-justify mr-5 text-uppercase">
-          {data.message}
-        </p>
-        <OverlayTrigger
-          placement="bottom"
-          overlay={<Tooltip>Marcar como leido</Tooltip>}
-        >
-          <span
-            className="material-icons-outlined btn"
-            style={{ color: "rgb(0,155,0)" }}
-          >
-            task_alt
-          </span>
-        </OverlayTrigger>
+        <div className="text-break text-justify">
+          {rol === "admin" && (
+            <>
+              <h6>Usuario: {data.user.username}</h6>
+              <br />
+            </>
+          )}
+          <p className=" text-uppercase  mr-5">{data.message}</p>
+        </div>
+        {!data.read && rol !== "admin" && (
+          <>
+            <OverlayTrigger
+              placement="bottom"
+              overlay={<Tooltip>Marcar como leido</Tooltip>}
+            >
+              <div
+                className="material-icons-outlined btn"
+                onClick={readMessage}
+                style={{ color: "rgb(0,155,0)" }}
+              >
+                task_alt
+              </div>
+            </OverlayTrigger>
+          </>
+        )}
       </div>
       <div className="font-italic">
-        <small>{data.createdAt}</small>
+        <small>{reformatDate(data.createdAt)}</small>
         <br />
         <small>{data.read ? "Leido" : "No leido"}</small>
       </div>

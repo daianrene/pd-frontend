@@ -7,6 +7,7 @@ import Home from "./components/HomePage/Home";
 import Login from "./components/LoginPage/Login";
 import Usuarios from "./components/UsuariosPage/Usuarios";
 import Reportes from "./components/ReportesPage/Reportes";
+import Mensajes from "./components/MensajesPage/Mensajes";
 
 const App = () => {
   const [currentUser, setCurrentUser] = useState(null);
@@ -33,13 +34,18 @@ const App = () => {
       <Navbar currentUser={currentUser} />
       <Routes>
         <Route exact path="/" element={<Home currentUser={currentUser} />} />
-        <Route exact path="/login" element={<Login />} />
-        <Route exact path="/usuarios" element={<Usuarios />} />
         <Route
           exact
           path="/reportes"
           element={<Reportes currentUser={currentUser} />}
         />
+        <Route
+          exact
+          path="/mensajes"
+          element={<Mensajes currentUser={currentUser} />}
+        />
+        <Route exact path="/login" element={<Login />} />
+        <Route exact path="/usuarios" element={<Usuarios />} />
       </Routes>
     </>
   );

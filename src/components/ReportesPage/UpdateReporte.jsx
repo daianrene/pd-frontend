@@ -9,7 +9,7 @@ const UpdateReporte = ({ handleUpdt, data, usuario }) => {
   useEffect(() => {
     setReporte(data);
     setUser(usuario);
-  }, []);
+  }, [usuario]);
 
   const toggleShowModal = () => {
     setShowModal(!showModal);
@@ -21,13 +21,14 @@ const UpdateReporte = ({ handleUpdt, data, usuario }) => {
   };
 
   const handleSubmit = () => {
-    handleUpdt(reporte);
+    const { user: userRemove, userId: user, ...newReporte } = reporte;
+    handleUpdt({ ...newReporte, user });
     setShowModal(!showModal);
   };
 
   return (
     <>
-      {user && data && (
+      {usuario && data && (
         <>
           <button onClick={toggleShowModal} className="btn btn-success my-4 ">
             <i className="material-icons-outlined">edit</i>
@@ -45,7 +46,7 @@ const UpdateReporte = ({ handleUpdt, data, usuario }) => {
                   name="turno"
                   value={reporte.turno}
                   onChange={handleChange}
-                  disabled={user.rol === "admin" ? false : true}
+                  disabled
                 >
                   <option value="T1">T1</option>
                   <option value="T2">T2</option>
@@ -62,7 +63,7 @@ const UpdateReporte = ({ handleUpdt, data, usuario }) => {
                   name="fecha"
                   value={reporte.fecha}
                   onChange={handleChange}
-                  disabled={user.rol === "admin" ? false : true}
+                  disabled
                 />
               </div>
 
@@ -72,7 +73,7 @@ const UpdateReporte = ({ handleUpdt, data, usuario }) => {
                   type="text"
                   className="form-control"
                   name="user"
-                  value={user.username}
+                  value={data.user.username}
                   onChange={handleChange}
                   disabled
                 />

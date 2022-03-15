@@ -31,6 +31,12 @@ const Navbar = ({ currentUser }) => {
         </li>
 
         <li className="nav-item">
+          <Link to={"/mensajes"} className="nav-link">
+            Mensajes <i className="material-icons-outlined">message</i>
+          </Link>
+        </li>
+
+        <li className="nav-item">
           <a href="/login" className="nav-link" onClick={AuthService.logout}>
             Cerrar sesion <i className="material-icons ">logout</i>
           </a>
@@ -41,7 +47,7 @@ const Navbar = ({ currentUser }) => {
 
   return (
     <nav className="navbar  navbar-expand  navbar-dark bg-dark py-3 mb-3">
-      <Link to={"/"} className="navbar-brand">
+      <Link to={!currentUser ? "login" : "/"} className="navbar-brand">
         <div className="h2">Sistema Parte Diario</div>
       </Link>
 
